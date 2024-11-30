@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+char *strTok(char *s, const char *ct);
+char *strDup(const char *str);
+char *getStr(const char *str);
+char *memCpy(char *destination, const char *source, int n);
+int strLen(const char *str);
+
 int strLen(const char *str) {
 	int len = 0;
 	int p = 0;
@@ -66,16 +72,76 @@ char *strDup(const char *str) {
 }
 
 char *strTok(char *s, const char *ct) {
+	
 	static char *ptr = NULL;
-
-	static int lenS = strLen(s);
-	static int lenCt = strLen(ct);
-	static int last = 0;
 
 	if (s != NULL) {
 		ptr = s;
+	} if (ptr == NULL) {
+		return NULL;
 	}
-	if (lenS == 0) {
+	
+	char *start = ptr;
+	int n = strLen(ct);
+	while (*start) {
+		int flag = 0;
+		for (int j = 0; j < n; j++) {
+			if (*start == ct[j]) {
+				flag = 1;
+				break;
+			}
+		} 
+
+		if (flag != 1) {
+			break;
+		} 
+		++start;
+	} 
+
+	if (*start == '\0') {
+		return NULL;
+	} 
+
+	char *end = start;
+	while (*end) {
+		int flag = 0;
+		for (int j = 0; j < n; j++) {
+			if (*end == ct[j]) {
+				flag = 1;
+				break;
+			}
+		}
+		if (flag == 1) {
+			break;
+		}
+		++end;
+	}
+	
+	if (*end) {
+		ptr = end + 1;
+		*end = '\0';
+	}
+	else {
+		ptr = NULL;
+	}
+
+	return start;
+}
+
+/*
+char *strTok(char *s, const char *ct) {
+	
+	static char *ptr = NULL;
+	//static int static lenS;
+	//static int lenCt;
+	//static int last = 0;
+
+	//int lenS = strLen(s);
+	//int lenCt = strLen(ct);
+
+	if (s != NULL) {
+		ptr = s;
+	} if (ptr == NULL) {
 		return NULL;
 	}
 	
@@ -83,7 +149,8 @@ char *strTok(char *s, const char *ct) {
 	int flag;
 	while (last < lenS) {
 		flag = 0;
-		for (int j = 0; j < lenCt; ++j) {
+		int j = 0;
+		for (; j < lenCt; ++j) {
 			if (s[last] == ct[j]) {
 				flag = 1;
 				break;
@@ -92,7 +159,7 @@ char *strTok(char *s, const char *ct) {
 		if (flag != 1) {
 			break;
 		} 
-		start == s[i];
+		start = s + j - 1;
 	} 
 
 	if (*start == '\0') {
@@ -102,7 +169,8 @@ char *strTok(char *s, const char *ct) {
 	char *end = start;
 	while (last < lenS) {
 		flag = 0;
-		for (int j = 0; j < lenCt; ++j) {
+		int j = 0;
+		for (; j < lenCt; ++j) {
 			if (s[last] == ct[j]) {
 				flag = 1;
 				break;
@@ -111,10 +179,10 @@ char *strTok(char *s, const char *ct) {
 		if (flag != 1) {
 			break;
 		}
-		end == s[i];
+		end = s + j - 1;
 	}
 	
-	if (*end != NULL) {
+	if (end != NULL) {
 		*end = '\0';
 		ptr = end + 1;
 	}
@@ -123,4 +191,4 @@ char *strTok(char *s, const char *ct) {
 	}
 
 	return ptr;
-}
+} p */
