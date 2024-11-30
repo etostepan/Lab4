@@ -60,7 +60,7 @@ int countVowels(const char *word) {
 	int count = 0;
 	int len = strLen(word);
 	for (int i = 0; i < len; i++) {
-		if (strchr(VOWELS, (char)word[i])) {
+		if (strChr(VOWELS, (char)word[i])) {
 			//printf("%c\n", word[i]);
 			count++;
 		}

@@ -2,11 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 
+char *strChr(char *, char);
 char *strTok(char *s, const char *ct);
 char *strDup(const char *str);
 char *getStr(const char *str);
 char *memCpy(char *destination, const char *source, int n);
 int strLen(const char *str);
+
+char *strChr(char *s, char c) {
+	if (s == NULL) {
+		printf("Empty string!\n");
+		return NULL;
+	}
+	char *ptr = s;
+	while (*ptr != '\0') {
+		if (*ptr == c) {
+			return ptr;
+		} ptr++;
+	} return NULL;
+}
 
 int strLen(const char *str) {
 	int len = 0;
