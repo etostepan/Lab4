@@ -18,8 +18,10 @@ char *strChr(char *s, char c) {
 	while (*ptr != '\0') {
 		if (*ptr == c) {
 			return ptr;
-		} ptr++;
-	} return NULL;
+		}
+		ptr++;
+	} 
+	return NULL;
 }
 
 int strLen(const char *str) {
