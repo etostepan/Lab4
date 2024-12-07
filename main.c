@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <readline/readline.h>
-#include <string.h>
 #include <time.h>
+
+#ifdef FLAG
+#include <string.h>
+#else
+#include <string.h>
+#include <readline/readline.h>
+#endif
 
 #define DELIM " \t"
 #define PROMPT "> "
@@ -18,7 +23,7 @@ int main() {
 		clock_t start = clock();
 		char *output = process(input);
 		clock_t end = clock();
-		float t = (float)(end - start) / CLOCKS_PER_SEC;
+		double t = (float)(end - start) / CLOCKS_PER_SEC;
 		printf("\"%s\"\n", output);
 		free(input);
 		free(output);
