@@ -10,10 +10,12 @@ char *memcpy(char *destination, const char *source, int n);
 int strlen(const char *str);
 
 char *strchr(char *s, char c) {
+	
 	if (s == NULL) {
 		printf("Empty string!\n");
 		return NULL;
 	}
+
 	char *ptr = s;
 	while (*ptr != '\0') {
 		if (*ptr == c) {
@@ -21,26 +23,35 @@ char *strchr(char *s, char c) {
 		}
 		ptr++;
 	} 
+	
 	return NULL;
 }
 
 int strlen(const char *str) {
+	
 	int len = 0;
 	int p = 0;
+	
 	if (str == NULL) {
 		printf("String is empty!\n");
 		return 0;
 	}
+	
 	while (str[p] != '\0') {
 		++len;
 		++p;
-	} return len;
+	} 
+
+	return len;
 }
 
 char *memcpy(char *destination, const char *source, int n) {
+	
 	for (int i = 0; i < n; i++) {
 		destination[i] = source[i];
-	} return destination;
+	} 
+
+	return destination;
 }
 
 char *readline(const char *str){
@@ -102,11 +113,10 @@ char *strtok(char *s, const char *ct) {
 	}
 	
 	char *start = ptr;
-	
-	while (strchr(DELIM, *start) && *start) {
+	while (strchr(DELIM, *start)) {
 		start++;
 	}
-
+	
 	if (*start == '\0') {
 		return NULL;
 	} 

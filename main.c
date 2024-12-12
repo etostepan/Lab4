@@ -24,7 +24,7 @@ int main() {
 		char *output = process(input);
 		clock_t end = clock();
 		double t = (float)(end - start) / CLOCKS_PER_SEC;
-		printf("\"%s\"\n", output);
+		printf("Answer: \"%s\"\n", output);
 		printf("Time: %lf\n", t);
 		free(input);
 		free(output);
