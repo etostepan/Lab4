@@ -3,7 +3,7 @@
 #include <time.h>
 
 #ifdef FLAG
-#include <string.h>
+#include "string.h"
 #else
 #include <string.h>
 #include <readline/readline.h>
@@ -25,11 +25,11 @@ int main() {
 		clock_t end = clock();
 		double t = (float)(end - start) / CLOCKS_PER_SEC;
 		printf("\"%s\"\n", output);
+		printf("Time: %lf\n", t);
 		free(input);
 		free(output);
 		input = readline(PROMPT);
 		int x = 0; 
-
 	}
 	return 0;
 }
@@ -49,8 +49,7 @@ char *process(const char *str) {
 			len += w_len;
 			res[len] = ' ';
 			len++;
-		} //printf("len=%d strlen(res)=%d\n",len,strlen(res));
-		//printf("Result: \"%s\"\n", res);
+		}
 		word = strtok(NULL, DELIM);
 	}
 	free(s);
@@ -67,10 +66,8 @@ int countVowels(const char *word) {
 	int len = strlen(word);
 	for (int i = 0; i < len; i++) {
 		if (strchr(VOWELS, (char)word[i])) {
-			//printf("%c\n", word[i]);
 			count++;
 		}
 	} 
-	//printf("Vowels count: %d\n", count);
 	return count;
 }

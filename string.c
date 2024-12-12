@@ -44,7 +44,7 @@ char *memcpy(char *destination, const char *source, int n) {
 }
 
 char *readline(const char *str){
-	char buf[5] = {0};
+	char buf[81] = {0};
 	char *res = NULL;
 	int len = 0;
 	int n = 0;
@@ -72,23 +72,26 @@ char *readline(const char *str){
 	if (len > 0) {
 		res[len] = '\0';
 	}
+
 	else {
 		res = calloc(1, sizeof(char));
-	} 
+	}
+
 	return res;
 }
 
 char *strdup(const char *str) {
 	int len = strlen(str);
 	char *duplicate = malloc(len * sizeof(char) + 1); 
+	
 	for (int i = 0; i <= len; ++i) {
 		duplicate[i] = str[i];
 	}
+	
 	return duplicate;
 }
 
 char *strtok(char *s, const char *ct) {
-	
 	static char *ptr = NULL;
 
 	if (s != NULL) {
@@ -104,52 +107,15 @@ char *strtok(char *s, const char *ct) {
 		start++;
 	}
 
-	/*
-
-	int n = strLen(ct);
-	while (*start) {
-		int flag = 0;
-		for (int j = 0; j < n; j++) {
-			if (*start == ct[j]) {
-				flag = 1;
-				break;
-			}
-		} 
-
-		if (flag != 1) {
-			break;
-		} 
-		++start;
-	} 
-	
-	*/
-
 	if (*start == '\0') {
 		return NULL;
 	} 
 	
-
 	char *end = start;
 	while (!strchr(DELIM, *end) && *end) {
 		end++;
 	}
 	
-	/*
-	while (*end) {
-		int flag = 0;
-		for (int j = 0; j < n; j++) {
-			if (*end == ct[j]) {
-				flag = 1;
-				break;
-			}
-		}
-		if (flag == 1) {
-			break;
-		}
-		++end;
-	}
-	*/
-
 	if (*end) {
 		ptr = end + 1;
 		*end = '\0';
